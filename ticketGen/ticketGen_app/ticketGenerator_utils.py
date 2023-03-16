@@ -1,17 +1,15 @@
+import os
 import uuid
 import qrcode
 import requests
 from io import BytesIO
 from PIL import ImageOps
 from PIL import Image, ImageDraw, ImageFont
-from firebase_admin import credentials, initialize_app, delete_app, get_app, storage, db
+from firebase_admin import storage
+from firebase_config import firebase_app 
 
 # Load your Firebase project
-cred = credentials.Certificate("./ticketGen_app/credentials/nftickethub-firebase-adminsdk-yjler-d6bb053362.json")
-initialize_app(cred, {
-    "storageBucket": "nftickethub.appspot.com",
-    "databaseURL": "https://nftickethub-default-rtdb.europe-west1.firebasedatabase.app/"
-})
+bucket = storage.bucket(app=firebase_app)
 
 def create_gradient_border(width, height, start_color, end_color):
     gradient = Image.linear_gradient("L")
@@ -93,18 +91,18 @@ def save_url_to_database(url):
     ref = db.reference("qrcodes")
     ref.push(url)
 
-def main():
-    unique_id = str(uuid.uuid4())
-    title = "Real Madrid CF vs Liverpool FC"
-    subtitle = "European Cup 2022-23 - Round of 16"
-    banner_url = "https://estaticos.esmadrid.com/cdn/farfuture/cOhhvW6sHt7weOXD_z0clOoXXmm7EcO_T4Wn2USU7Ik/mtime:1667830662/sites/default/files/eventos/eventos/real_madrid_-_liverpool_fc_uefa_champions_league.jpg"
-    qr_image = create_qr_code_with_text(unique_id, title, subtitle, banner_url)
-    public_url = upload_image_to_firebase(qr_image)
-    save_url_to_database(public_url)
+# def main():
+#     unique_id = str(uuid.uuid4())
+#     title = "Real Madrid CF vs Liverpool FC"
+#     subtitle = "European Cup 2022-23 - Round of 16"
+#     banner_url = "https://estaticos.esmadrid.com/cdn/farfuture/cOhhvW6sHt7weOXD_z0clOoXXmm7EcO_T4Wn2USU7Ik/mtime:1667830662/sites/default/files/eventos/eventos/real_madrid_-_liverpool_fc_uefa_champions_league.jpg"
+#     qr_image = create_qr_code_with_text(unique_id, title, subtitle, banner_url)
+#     public_url = upload_image_to_firebase(qr_image)
+#     save_url_to_database(public_url)
 
-    print(f"QR code image uploaded to: {public_url}")
+#     print(f"QR code image uploaded to: {public_url}")
     
-    return public_url
+#     return public_url
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
