@@ -22,12 +22,14 @@ def create_event(request):
             processed_tickets = []
             for ticket in event_sections:
                 name = ticket.get('name')
+                description = ticket.get('description')
                 price = ticket.get('price')
                 available_seats = ticket.get('available_seats')
 
                 # Perform validation and processing for each ticket, e.g., save to the database
                 processed_ticket = {
                     "name": name,
+                    "description": description,
                     "price": price,
                     "available_seats": available_seats
                 }
