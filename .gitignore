@@ -1,0 +1,36 @@
+# credential files
+credentials/
+
+# Django-specific files
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+
+# Credentials folder
+credentials/
+
+# Python-specific files
+*.pyo
+*.pyc
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Development environment files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.py~
+*~
+*.orig
+*.rej
+*.tmp

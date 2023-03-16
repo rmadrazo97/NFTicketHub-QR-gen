@@ -6,9 +6,8 @@ from PIL import ImageOps
 from PIL import Image, ImageDraw, ImageFont
 from firebase_admin import credentials, initialize_app, delete_app, get_app, storage, db
 
-delete_app(get_app())
 # Load your Firebase project
-cred = credentials.Certificate("./credentials/nftickethub-firebase-adminsdk-yjler-d6bb053362.json")
+cred = credentials.Certificate("./ticketGen_app/credentials/nftickethub-firebase-adminsdk-yjler-d6bb053362.json")
 initialize_app(cred, {
     "storageBucket": "nftickethub.appspot.com",
     "databaseURL": "https://nftickethub-default-rtdb.europe-west1.firebasedatabase.app/"
