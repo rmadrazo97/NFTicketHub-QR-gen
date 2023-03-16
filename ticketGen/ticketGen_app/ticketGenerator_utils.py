@@ -8,7 +8,7 @@ from firebase_admin import credentials, initialize_app, delete_app, get_app, sto
 
 delete_app(get_app())
 # Load your Firebase project
-cred = credentials.Certificate("/xxx.json")
+cred = credentials.Certificate("./credentials/nftickethub-firebase-adminsdk-yjler-d6bb053362.json")
 initialize_app(cred, {
     "storageBucket": "nftickethub.appspot.com",
     "databaseURL": "https://nftickethub-default-rtdb.europe-west1.firebasedatabase.app/"
@@ -104,6 +104,8 @@ def main():
     save_url_to_database(public_url)
 
     print(f"QR code image uploaded to: {public_url}")
+    
+    return public_url
 
 if __name__ == "__main__":
     main()
